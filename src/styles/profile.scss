@@ -1,0 +1,74 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+#profile-info{
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items:center;
+    padding:10px;
+    flex-grow:2;
+    margin-right: 20px;
+    .profile-text{
+        flex-grow: 2;
+        font-family: 'Roboto',sans-serif;
+        margin:0 10px 0 2.5rem;
+        height:90%;
+        .username{
+            font-size:2.5rem;
+        }
+        .user-describe{
+            *{margin:1rem 0px;
+            }
+        }
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .edit{
+            align-self: flex-end;
+        }
+    }    
+    .avatar{
+       height:9rem;
+       width: 9rem;
+       
+    }
+}
+
+.link{
+    font-family: 'Roboto',sans-serif;
+    font-size:1rem;
+    color:$link-to-color;
+    &:link {
+        text-decoration: none;
+      }
+      
+    &:visited {
+       
+        text-decoration:none;
+        color:$link-to-color;
+      }
+    &:hover{
+        text-decoration: underline;
+        color:$link-to-color-hover;
+        transition-property: all;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-out;
+    }
+}
+
+.profile-header{
+    display: flex;
+    margin: 20px;
+    justify-content: space-around;
+    
+   
+    .stat{
+        flex-grow:4;
+        display:flex;
+        align-items: center;   
+        padding:0 0 0 20px;
+        h3{
+            margin-left:2rem;
+        }
+    }
+}

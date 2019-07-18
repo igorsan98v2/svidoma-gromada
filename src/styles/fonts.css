@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Roboto',sans-serif;
+  src: url("./fonts/Roboto.ttf");
+  src: url("./fonts/Roboto.woff");
+  src: url("./fonts/Roboto.woff2");
+}
+
+@font-face {
+  font-family: 'Roboto-bold';
+  src: url("./fonts/Robotobold.ttf");
+  src: url("./fonts/Robotobold.woff");
+  src: url("./fonts/Robotobold.woff2");
+}
+/*# sourceMappingURL=fonts.css.map */
