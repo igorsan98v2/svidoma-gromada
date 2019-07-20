@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
+import { BrowserRouter as Router, Route,Link,Redirect } from "react-router-dom";
+
 
 import MyMap from "./map";
-import './styles/sigin.css'
-import NavBar from './header'
+import './styles/sigin.css';
+import NavBar from "./header";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SigIn from './components/sign-in/SignIn'
-import StickyFooter from './components/sticky-footer/StickyFooter'
 import EventList from './components/EventList';
+
 import './index.css'
 class App extends Component {
   constructor(props){
@@ -89,11 +91,11 @@ class App extends Component {
     const dynamicElement = ()=>{
           switch (id) {
             case pageList.map:
-               return (<MyMap/>);
+          //     return (<MyMap/>);
             break
             case pageList.newsList:
                 
-              return (<EventList/>)
+            //  return (<EventList/>)
             case pageList.searchRes:break;
            
           }
@@ -109,12 +111,21 @@ class App extends Component {
     }
    toRender = (
    <div className="App">
-      <MuiThemeProvider>
-        <NavBar titleName={"Свідома громада"} 
-        menuItems = {this.props.propsList.menuItems} 
-        onClick={this.handleClick} />
-      </MuiThemeProvider>
-      {dynamicElement()}
+      <Router>
+        <MuiThemeProvider>
+          <NavBar titleName={"Свідома громада"} 
+          menuItems = {this.props.propsList.menuItems} 
+          onClick={this.handleClick} />
+       </MuiThemeProvider>
+     
+
+        <Route path='/map' component={MyMap}/>
+        <Route path='/event-list' component={EventList}/>
+        <Route exact path="/" render={() => (
+        <Redirect to="/map"/>
+        )}/>     
+
+      </Router>
       {logScreen()}
       <footer>footer after all</footer>
     </div>);

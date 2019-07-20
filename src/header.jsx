@@ -4,6 +4,12 @@ import 'material-ui';
 import SearchBar from 'material-ui-search-bar'
 import PersonOutlinedIcon from '@material-ui/icons/Person';
 import Menu from '@material-ui/icons/Menu';
+
+import MyMap from "./map";
+
+import EventList from './components/EventList';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 class NavBar extends Component{
     elChoose(e){
         console.log(e.target);
@@ -13,7 +19,7 @@ class NavBar extends Component{
         let title = this.props.titleName;
         let menuItems =  this.props.menuItems.map((menuItem,index)=>{
             return(<li key={index}  menuid={menuItem.id} 
-            onClick={this.props.onClick}>{menuItem.title}</li>);
+            onClick={this.props.onClick}>{<Link to={menuItem.path} >{menuItem.title}</Link>}</li>);
             //return(<li key={index} onClick={this.elChoose} menuid={menuItem.id} >{menuItem.title}</li>);
         });
         let menuSize = menuItems.length;
@@ -38,7 +44,10 @@ class NavBar extends Component{
                        <div>&#x2630;</div>
                     </div>
                     <ul id='menu-item-list'>
-                       {menuItems}
+                        
+                        {menuItems}
+                      
+                      
                        
                     </ul>
                 </div>
