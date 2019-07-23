@@ -10,6 +10,7 @@ import SigIn from './components/sign-in/SignIn'
 import EventList from './components/EventList';
 
 import './index.css'
+import EventPopUp from './components/EventPopUp';
 class App extends Component {
   constructor(props){
     super(props);
@@ -126,8 +127,9 @@ class App extends Component {
         )}/>     
 
       </Router>
+      
       {logScreen()}
-      <footer>footer after all</footer>
+      <footer><EventPopUp></EventPopUp>footer after all</footer>
     </div>);
    
     return toRender;

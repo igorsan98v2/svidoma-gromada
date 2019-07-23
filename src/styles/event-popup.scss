@@ -1,0 +1,26 @@
+#popup{
+    position: relative;
+    top:-85vh;
+    margin: auto;
+    z-index: 9999;
+    width:60vw;
+    height:85vh;
+    padding: 10px;
+    .control-tools{
+        display: flex;
+        justify-content: flex-end;
+    }
+    #head{
+        color: black;
+        display: flex;
+        justify-content: space-between;
+        h2{display: block}
+        .date{
+            
+            align-self:center;
+        }
+    }
+    .modal-body{
+        overflow-y: hidden;
+    }
+}
