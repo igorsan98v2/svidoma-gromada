@@ -10,7 +10,7 @@ import '../styles/event-popup.css'
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import "react-image-gallery/styles/css/image-gallery.css";
 import ScrollableAnchor from 'react-scrollable-anchor'
- 
+
 class EventPopUp extends Component{
     render(){
 
@@ -33,9 +33,9 @@ class EventPopUp extends Component{
         let date = "01/03/19";
         let event ="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra tellus in hac habitasse platea dictumst vestibulum rhoncus. Id velit ut tortor pretium viverra suspendisse. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Vel turpis nunc eget lorem dolor sed. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing. Aliquet eget sit amet tellus cras adipiscing enim eu. Augue lacus viverra vitae congue eu consequat ac felis donec.";
         let content = images.map(image => (<div>
-            <img src={image.original} />
+            <img alt="нема зображент :/" src={image.original} />
             </div>));
-        const popup= <Paper id="popup">
+        const popup= <div className="background"><Paper id="popup">
             <div className="control-tools">
                 <Fullscreen color="disabled"/>
                 <Close color="disabled"/>
@@ -49,14 +49,17 @@ class EventPopUp extends Component{
                 </div>
             </div>
             <div className="modal-body">
-                <Carousel>{content}</Carousel>
+                <Carousel id="image-gallery" 
+                showThumbs={false}
+                infiniteLoop={false}>{content}</Carousel>
                 <a href='#section1'> Go to section 1 </a>
                 <ScrollableAnchor id={'section1'}>
-                    <div> {event}</div>
+                    <div id="text-part"> {event}</div>
                 </ScrollableAnchor>>
             </div>
            
         </Paper>
+        </div>
         return popup;
     }
 }

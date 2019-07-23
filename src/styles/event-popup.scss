@@ -1,11 +1,23 @@
+//need to be deleted
+.background{
+    position: absolute;
+    z-index: 998;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    top: 0;
+
+}
 #popup{
     position: relative;
-    top:-85vh;
+    top:5vh;
     margin: auto;
-    z-index: 9999;
+    z-index: 999;
     width:60vw;
     height:85vh;
     padding: 10px;
+    
+    
     .control-tools{
         display: flex;
         justify-content: flex-end;
@@ -21,6 +33,9 @@
         }
     }
     .modal-body{
-        overflow-y: hidden;
+        #text-part{
+            display: block;
+            overflow:hidden;
+        }
     }
 }

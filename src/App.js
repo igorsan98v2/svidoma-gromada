@@ -129,7 +129,8 @@ class App extends Component {
       </Router>
       
       {logScreen()}
-      <footer><EventPopUp></EventPopUp>footer after all</footer>
+      <EventPopUp></EventPopUp>
+      <footer>footer after all</footer>
     </div>);
    
     return toRender;
