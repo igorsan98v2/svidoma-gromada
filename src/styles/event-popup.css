@@ -46,8 +46,13 @@
       align-self: center;
 }
 
+#popup .modal-body {
+  height: 80%;
+  overflow-y: scroll;
+}
+
 #popup .modal-body #text-part {
   display: block;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 /*# sourceMappingURL=event-popup.css.map */

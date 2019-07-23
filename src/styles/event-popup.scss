@@ -16,7 +16,7 @@
     width:60vw;
     height:85vh;
     padding: 10px;
-    
+   
     
     .control-tools{
         display: flex;
@@ -33,9 +33,11 @@
         }
     }
     .modal-body{
+        height:80%;
+        overflow-y: scroll;
         #text-part{
             display: block;
-            overflow:hidden;
+            overflow-y:hidden;
         }
     }
 }

@@ -53,8 +53,9 @@ class EventPopUp extends Component{
                 showThumbs={false}
                 infiniteLoop={false}>{content}</Carousel>
                 <a href='#section1'> Go to section 1 </a>
+                <div id="text-part"> {event}</div>
                 <ScrollableAnchor id={'section1'}>
-                    <div id="text-part"> {event}</div>
+                    <div>some text</div>
                 </ScrollableAnchor>>
             </div>
            
