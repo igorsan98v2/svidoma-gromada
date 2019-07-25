@@ -11,6 +11,8 @@ import EventList from './components/EventList';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class NavBar extends Component{
+
+
     elChoose(e){
         console.log(e.target);
         

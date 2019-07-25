@@ -8,7 +8,15 @@
     top: 0;
 
 }
-#popup{
+
+.close{
+    transition: all 1s ease-in-out;
+    height: 0%;
+    width: 0%;
+    display: none;
+}
+
+.popup{
     position: relative;
     top:5vh;
     margin: auto;
@@ -16,17 +24,22 @@
     width:60vw;
     height:85vh;
     padding: 10px;
-   
+    
+
     
     .control-tools{
         display: flex;
         justify-content: flex-end;
+    
     }
     #head{
         color: black;
         display: flex;
         justify-content: space-between;
-        h2{display: block}
+        h2{
+            display: block;
+            margin: 0px 0px 5px 0px;
+        }
         .date{
             
             align-self:center;
@@ -40,4 +53,25 @@
             overflow-y:hidden;
         }
     }
+}
+.full{
+    width: 100%;
+    height: 100vh;
+    top:0;
+    .modal-body{
+        overflow-y:hidden;
+        height: 100%;
+       
+        #text-part{
+            margin: 10px;
+            display: block;
+            height: 50%;
+           
+        }
+      
+    }
+    #image-gallery{
+        display: flex;
+        justify-content: center;
+    } 
 }

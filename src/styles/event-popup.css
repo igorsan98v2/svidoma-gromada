@@ -7,7 +7,15 @@
   top: 0;
 }
 
-#popup {
+.close {
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  height: 0%;
+  width: 0%;
+  display: none;
+}
+
+.popup {
   position: relative;
   top: 5vh;
   margin: auto;
@@ -17,7 +25,7 @@
   padding: 10px;
 }
 
-#popup .control-tools {
+.popup .control-tools {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -26,7 +34,7 @@
           justify-content: flex-end;
 }
 
-#popup #head {
+.popup #head {
   color: black;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -36,23 +44,50 @@
           justify-content: space-between;
 }
 
-#popup #head h2 {
+.popup #head h2 {
   display: block;
+  margin: 0px 0px 5px 0px;
 }
 
-#popup #head .date {
+.popup #head .date {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
 }
 
-#popup .modal-body {
+.popup .modal-body {
   height: 80%;
   overflow-y: scroll;
 }
 
-#popup .modal-body #text-part {
+.popup .modal-body #text-part {
   display: block;
   overflow-y: hidden;
+}
+
+.full {
+  width: 100%;
+  height: 100vh;
+  top: 0;
+}
+
+.full .modal-body {
+  overflow-y: hidden;
+  height: 100%;
+}
+
+.full .modal-body #text-part {
+  margin: 10px;
+  display: block;
+  height: 50%;
+}
+
+.full #image-gallery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=event-popup.css.map */

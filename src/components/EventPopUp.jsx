@@ -10,8 +10,37 @@ import '../styles/event-popup.css'
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import "react-image-gallery/styles/css/image-gallery.css";
 import ScrollableAnchor from 'react-scrollable-anchor'
-
+import $ from 'jquery';
+import AnchorLink from 'react-anchor-link-smooth-scroll'
+ 
 class EventPopUp extends Component{
+    constructor(props){
+        super(props);
+        this.state = {isOpen:true,isFullSize:false,modalState:"background",popUp:"popup",galleryWidh:"100%"};
+        this.closePopUp = this.closePopUp.bind(this);
+        this.makeFullSize = this.makeFullSize.bind(this);
+        
+    }
+    closePopUp(){
+        this.setState((state)=>{return {isOpen:!state.isOpen}} );
+        this.state.modalState="background"+ (this.state.isOpen?"":" close");
+        console.log(this.state);
+    }
+    makeFullSize(){
+        this.setState((state)=>{
+            
+            return {isFullSize:!state.isFullSize}} );
+        this.state.popUp="popup"+(this.state.isFullSize?" full":"");
+        if(this.state.isFullSize){
+            this.state.galleryWidh="65vw";
+        }
+        else  this.state.galleryWidh="100%";
+
+    }
+    componentDidUpdate(){
+      
+     
+    }
     render(){
 
         const images = [
@@ -35,10 +64,13 @@ class EventPopUp extends Component{
         let content = images.map(image => (<div>
             <img alt="нема зображент :/" src={image.original} />
             </div>));
-        const popup= <div className="background"><Paper id="popup">
+    
+
+        const popup= <div className={this.state.modalState}>
+            <Paper className={this.state.popUp}>
             <div className="control-tools">
-                <Fullscreen color="disabled"/>
-                <Close color="disabled"/>
+                <Fullscreen   onClick={this.makeFullSize}  color="disabled"/>
+                <Close onClick={this.closePopUp} color="disabled"/>
             </div>
             <div id ="head">
                 <h2>
@@ -49,14 +81,16 @@ class EventPopUp extends Component{
                 </div>
             </div>
             <div className="modal-body">
-                <Carousel id="image-gallery" 
+                <div id="image-gallery" > <Carousel 
                 showThumbs={false}
-                infiniteLoop={false}>{content}</Carousel>
-                <a href='#section1'> Go to section 1 </a>
+                infiniteLoop={false}
+                width={this.state.galleryWidh}>{content}</Carousel></div>
+               
+                
                 <div id="text-part"> {event}</div>
-                <ScrollableAnchor id={'section1'}>
-                    <div>some text</div>
-                </ScrollableAnchor>>
+                
+                  
+           
             </div>
            
         </Paper>
