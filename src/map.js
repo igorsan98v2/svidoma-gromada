@@ -12,6 +12,10 @@ import LocationOn from  '@material-ui/icons/LocationOn';
 import {unByKey} from 'ol/Observable.js';
 import {easeOut} from 'ol/easing.js';
 import Draw from 'ol/interaction/Draw.js';
+import Overlay from 'ol/Overlay.js';
+import './styles/map.css'
+import {toStringHDMS} from 'ol/coordinate.js';
+import Button from '@material-ui/core/Button';
 const Proj =require('ol/proj');
 
 
@@ -19,9 +23,14 @@ const Proj =require('ol/proj');
 class PublicMap extends Component {
   constructor(props) {
     super(props);
-    
+    this.popup = React.createRef();
+    this.popUpContent = React.createRef();
+    this.closePopUp = this.closePopUp.bind(this);
+    this.allowAddMarker = this.allowAddMarker.bind(this);
+    this.allowButton = React.createRef();
+    this.decilineButton =  React.createRef();
     //need last user view
-    this.state = { center: [2989282.908734901,  6254723.516520006], zoom: 13 };
+    this.state = { center: [2989282.908734901,  6254723.516520006], zoom: 13,isAviable:false};
 
     this.olmap = new Map({
       target: null,
@@ -33,8 +42,10 @@ class PublicMap extends Component {
       view: new View({
         center: this.state.center,
         zoom: this.state.zoom
-      })
+      }),
+     
     });
+   
     this.featuresList = [];
     var source = new VectorSource({wrapX: false});
     var places = [26.85318525473822,48.88117642227235];
@@ -73,8 +84,8 @@ class PublicMap extends Component {
     this.olmap.addLayer(layerVector);
     this.isTimeToAdd= false;
     this.olmap.on('click',(event)=>{
-    
-      this.addMarker(event.coordinate);
+      this.coordinate = event.coordinate;
+      //this.addMarker(event.coordinate);
     });
     var that = this;
       map.on('postcompose', function(event){
@@ -100,13 +111,14 @@ class PublicMap extends Component {
         that.isTimeToAdd=false;
       }
     });
-
+   
+      
     
   }
   
   addMarker(coord){
     console.log(coord);
-
+    
     let  marker = new Feature({
       geometry: new Point(coord)
      
@@ -135,7 +147,20 @@ class PublicMap extends Component {
     this.olmap.getView().setZoom(this.state.zoom);
     
   }
-  
+  closePopUp(){
+    this.overlay.setPosition(undefined);
+    this.closer.blur();
+    return false;
+  }
+  allowAddMarker(event){
+     console.log("try to change state");
+     this.setState(prvState => {
+        console.log("is Marker set allowed ?"+(!prvState.isAviable));
+        return {isAviable:!prvState.isAviable}
+     })  ;
+     this.addMarker(this.coordinate);
+     this.closePopUp();
+  }
   componentDidMount() {
     this.olmap.setTarget("map");
 
@@ -145,9 +170,35 @@ class PublicMap extends Component {
       let zoom = this.olmap.getView().getZoom();
       this.setState({ center, zoom });
     });
+    var container = this.popup.current;
+    console.log(container);
+    var overlay = new Overlay({
+      element: container,
+      autoPan: true,
+      autoPanAnimation: {
+        duration: 250
+      }});
+    this.overlay = overlay;
+    var content = this.popUpContent.current;
+    let allow = this.allowButton.current;
+    allow.onclick = this.allowAddMarker;
+    let closer= this.decilineButton.current;
+    this.closer = closer;
+    console.log(content);
+    this.olmap.addOverlay(overlay);
     
+    var that = this;
+    this.olmap.on('singleclick', function(evt) {
+      var coordinate = evt.coordinate;
+      var hdms =toStringHDMS(Proj.toLonLat(coordinate));
+      console.log(that.content);
+      content.innerHTML = '<p>Бажаєте обозначити подію тут ?</p><code>' + hdms +
+          '</code>';
+      overlay.setPosition(coordinate);
+    });
+    closer.onclick = this.closePopUp;
   }
-
+  
   shouldComponentUpdate(nextProps, nextState) {
     let center = this.olmap.getView().getCenter();
     let zoom = this.olmap.getView().getZoom();
@@ -168,9 +219,22 @@ class PublicMap extends Component {
   render() {
     this.updateMap(); // Update map on render?
     //   <button onClick={e => this.userAction()}>setState on click</button>
-    return (
+    return (<div>
       <div id="map" style={{ width: "100%", height: "80vh" }}>
           
+      </div>
+       <div id="popup" className="ol-popup" ref={this.popup}>
+        <div id="popup-content" ref={this.popUpContent}></div>
+        <div className="buttons-container">
+          <Button ref={this.allowButton}  color="primary">
+            Так
+          </Button>
+          <Button  ref={this.decilineButton}  color="primary">
+            Ні
+          </Button>
+        </div>
+        </div>
+        
       </div>
     );
   }

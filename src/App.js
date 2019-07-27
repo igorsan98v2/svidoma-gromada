@@ -8,7 +8,7 @@ import NavBar from "./header";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SigIn from './components/sign-in/SignIn'
 import EventList from './components/EventList';
-
+import Button from '@material-ui/core/Button';
 import './index.css'
 import EventPopUp from './components/EventPopUp';
 class App extends Component {
@@ -130,7 +130,7 @@ class App extends Component {
       
       {logScreen()}
       <EventPopUp></EventPopUp>
-      <footer>footer after all</footer>
+      <footer>    footer after all</footer>
     </div>);
    
     return toRender;
