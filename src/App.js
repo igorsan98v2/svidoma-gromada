@@ -11,6 +11,7 @@ import EventList from './components/EventList';
 import Button from '@material-ui/core/Button';
 import './index.css'
 import EventPopUp from './components/EventPopUp';
+import Checkout from './components/checkout/Checkout';
 class App extends Component {
   constructor(props){
     super(props);
@@ -122,6 +123,7 @@ class App extends Component {
 
         <Route path='/map' component={MyMap}/>
         <Route path='/event-list' component={EventList}/>
+        <Route path='/community' component={Checkout}/>
         <Route exact path="/" render={() => (
         <Redirect to="/map"/>
         )}/>     
